@@ -1,0 +1,24 @@
+{
+    "name": "4blair",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^1.35.7",
+        "framer-motion": "^7.5.3",
+        "next": "12.3.1",
+        "react": "18.2.0",
+        "react-dom": "18.2.0",
+        "react-icons": "^4.4.0"
+    },
+    "devDependencies": {
+        "eslint": "8.25.0",
+        "eslint-config-next": "12.3.1",
+        "ts-node": "^10.9.1"
+    }
+}

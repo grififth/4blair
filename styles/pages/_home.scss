@@ -1,0 +1,55 @@
+.home {
+    background-color: $secondary-color;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("/home-background.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &-title {
+        text-align: center;
+        h1 {
+            color: $secondary-color;
+            font-size: 6rem;
+        }
+        p {
+            color: $primary-color;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+    }
+    &-button {
+        margin-top: 5vh;
+        button {
+            background-color: $secondary-color;
+            border: none;
+            color: white;
+        }
+    }
+
+    &-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        background-color: white;
+
+        width: 800px;
+        height: 500px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        //Shadow
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+}

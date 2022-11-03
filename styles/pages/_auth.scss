@@ -1,0 +1,102 @@
+.auth {
+    background-color: $secondary-color;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background-image: url("/home-background.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    &-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        background-color: white;
+
+        width: 800px;
+        height: 500px;
+
+        padding: 20px;
+
+        border-radius: 20px;
+
+        //Shadow
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    &-title {
+        width: 100%;
+
+        color: $secondary-color;
+    }
+
+    &-content {
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        padding: 10px 20px;
+
+        overflow-y: auto;
+
+        border-top: 2px dashed $tertiary-color;
+
+        text-align: center;
+
+        p {
+            color: black;
+            font-size: 1rem;
+        }
+
+        h1 {
+            color: $secondary-color;
+            font-size: 2.5rem;
+        }
+        h2 {
+            color: $tertiary-color;
+            font-size: 1.5rem;
+        }
+        p {
+            line-height: 2rem;
+        }
+    }
+
+    &-continue {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        &-error {
+            width: calc(100% / 3);
+
+            color: $tertiary-color;
+            font-size: 1.25rem;
+        }
+
+        &-answer {
+            width: calc(100% / 3);
+        }
+
+        &-button {
+            width: calc(100% / 3);
+
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+}
