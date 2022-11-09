@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
                 return { error };
             }
             const { error } = await supabase.auth.signUp({
-                email: data.username + "@blairchan.com",
+                email: data.username + "@4blair.com",
                 password: data.password,
             });
             if (error) {
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         },
         signIn: async (data) => {
             const { error } = await supabase.auth.signIn({
-                email: data.username + "@blairchan.com",
+                email: data.username + "@4blair.com",
                 password: data.password,
             });
             console.log(error);

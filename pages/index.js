@@ -8,6 +8,8 @@ import { useEffect } from "react";
 
 import { motion } from "framer-motion";
 
+import Head from "next/head";
+
 export default function Home() {
     const { user, signOut } = useAuth();
 
@@ -19,6 +21,9 @@ export default function Home() {
 
     return (
         <motion.div className="home" initial="initial" animate="animate" exit="exit">
+            <Head>
+                <title>4Blair</title>
+            </Head>
             <div className="home-card">
                 <motion.div
                     className="home-title"
@@ -28,7 +33,7 @@ export default function Home() {
                         },
                     }}
                 >
-                    <h1>Blairchan</h1>
+                    <h1>4Blair</h1>
                     <p>A Private, Completely Anonymous Social Platform</p>
                 </motion.div>
                 <motion.div
