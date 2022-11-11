@@ -5,6 +5,7 @@ import { useAuth } from "../utils/AuthContext";
 import Link from "next/link";
 import Router from "next/router";
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
 
 import { motion } from "framer-motion";
 
@@ -12,6 +13,7 @@ import Head from "next/head";
 
 export default function Home() {
     const { user, signOut } = useAuth();
+    const { theme, setTheme } = useTheme();
 
     useEffect(() => {
         if (user) {
@@ -20,35 +22,31 @@ export default function Home() {
     }, [user]);
 
     return (
-        <motion.div className="home" initial="initial" animate="animate" exit="exit">
+        <motion.div
+            className="w-screen h-screen flex flex-col justify-center items-center"
+            initial="initial"
+            animate="animate"
+            exit="exit"
+        >
             <Head>
-                <title>4Blair</title>
+                <title>OnlyBlair</title>
             </Head>
-            <div className="home-card">
-                <motion.div
-                    className="home-title"
-                    variants={{
-                        exit: {
-                            opacity: 0,
-                        },
-                    }}
-                >
-                    <h1>4Blair</h1>
-                    <p>A Private, Completely Anonymous Social Platform</p>
-                </motion.div>
-                <motion.div
-                    className="home-button"
-                    variants={{
-                        exit: {
-                            opacity: 0,
-                        },
-                    }}
-                >
-                    <Link href="/auth">
-                        <button className="button-29">Get Started</button>
-                    </Link>
-                </motion.div>
+            <div className="absolute top-0 right-0">
+                <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+                    {theme === "dark" ? "Light" : "Dark"}
+                </button>
             </div>
+            <div className="flex flex-col gap-4">
+                <h1 className="text-7xl font-bold text-center">OnlyBlair</h1>
+                <p className="text-center text-gray-500 text-xl text-lightaccent dark:text-darkaccent">
+                    Private, Secure, Completely Anonymous Social Platform
+                </p>
+            </div>
+            <button>
+                <Link href="/auth">
+                    <a>Get Started</a>
+                </Link>
+            </button>
         </motion.div>
     );
 }
