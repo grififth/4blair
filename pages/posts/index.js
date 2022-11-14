@@ -1,22 +1,23 @@
-import Router from "next/router";
+// import Router from "next/router";
 
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
-import { useAuth } from "../../utils/AuthContext";
+// import { useAuth } from "../../utils/AuthContext";
+
+import NavBar from "../../components/NavBar";
 
 export default function Posts() {
-    const { user, signOut } = useAuth();
+    // const { user, signOut } = useAuth();
 
-    useEffect(() => {
-        if (!user) {
-            Router.push("/auth");
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     if (!user) {
+    //         Router.push("/auth");
+    //     }
+    // }, [user]);
 
     return (
         <div>
-            <h1>Posts</h1>
-            <button onClick={signOut}>Sign Out</button>
+            <NavBar />
         </div>
     );
 }

@@ -1,170 +1,180 @@
+import { useLayoutEffect, useRef, useState } from "react";
+
+import gsap from "gsap";
+
+import Head from "next/head";
+
+import ThemeSwitch from "../components/ThemeSwitch";
 import Router from "next/router";
 
-import { useAuth } from "../utils/AuthContext.js";
-import { useState } from "react";
-
-import StudentVue from "studentvue";
-
-const RenderText = (text) => {
-    return text.split("\n").map((str, i) => <p key={i}>{str}</p>);
-};
+const STEPS = 4;
 
 export default function Auth() {
-    const { signUp } = useAuth();
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [stage, setStage] = useState(0);
-    const [credentials, setCredentials] = useState({
-        studentid: "",
-        sidpassword: "",
-    });
-    const [authenticated, setAuthenticated] = useState(false);
+    const [step, setStep] = useState(0);
+    const [prevStep, setPrevStep] = useState(0);
 
-    const verifyUser = async (e) => {
-        e.preventDefault();
-        if (loading) return;
-        setLoading(true);
-        setError("Verifying...");
-        const studentid = e.target.studentid.value;
-        const sidpassword = e.target.sidpassword.value;
-        let message = "";
-        try {
-            const client = await StudentVue.login("https://md-mcps-psv.edupoint.com", {
-                username: studentid,
-                password: sidpassword,
-            });
-            const attendance = await client.attendance();
-            if (attendance["schoolName"] !== "Montgomery Blair High") {
-                message = "You aren't elligible";
-            } else {
-                message = "Success";
-            }
-        } catch (e) {
-            message = "StudentVue Verification Error";
-        }
-        if (message === "Success") {
-            setAuthenticated(true);
-            setCredentials({
-                studentid: studentid,
-                sidpassword: sidpassword,
-            });
-        }
-        setError(message);
-        setLoading(false);
-    };
+    const barRef = useRef(null);
 
-    const registerUser = async (e) => {
-        e.preventDefault();
-        if (loading) return;
-        setLoading(true);
-        setError("Registering...");
-        const { studentid, sidpassword } = credentials;
-        const { error } = await signUp({
-            studentid: studentid,
-            sidpassword: sidpassword,
-            username: e.target.username.value,
-            password: e.target.password.value,
+    useLayoutEffect(() => {
+        const ctx = gsap.context(() => {
+            gsap.fromTo(
+                barRef.current,
+                {
+                    width: `${prevStep * (100 / STEPS)}%`,
+                    duration: 0.5,
+                },
+                {
+                    width: `${step * (100 / STEPS)}%`,
+                    duration: 0.5,
+                    ease: "power4.out",
+                }
+            );
         });
-        setLoading(false);
-        if (error) {
-            setError(error.message);
-        } else {
-            Router.push("/");
-        }
-    };
+        return () => ctx.revert();
+    }, [step]);
 
-    const stageAnswers = ["yes", "accept"];
-
-    const renderStage = () => {
-        switch (stage) {
+    const renderStep = () => {
+        switch (step) {
             case 0:
                 return (
-                    <div className="auth-content-0">
-                        <h2>PLEASE MAKE SURE YOU ACTUALLY READ THIS.</h2>
-                        {RenderText(`As a quick introduction: Hi I\'m Stephen from Class of 2025. \n
-                            What you\'re looking at right now is just a quick overview of the rules
-                            and information about the site. \n
-                            Please actually read this before I get in trouble because you didn\'t.
-                            \n
-                            In fact, each slide will require an input to continue just to verify
-                            you\'re actually paying attention. \n
-                            Input "yes" into the box to continue. \n`)}
-                        <h2>
-                            {`IMPORTANT: 4Blair is not affiliated with Montgomery Blair High School
-                            in any way.`}
-                        </h2>
+                    <div className="flex flex-col items-start justify-start w-full h-full">
+                        <h1 className="text-5xl font-bold">What is OnlyBlair?</h1>
+                        <p className="text-xl mt-8">
+                            OnlyBlair is a completely anonymous private social platform. <br />{" "}
+                            <br /> Since this is the beta test, there is no need to login. <br />{" "}
+                            <br />
+                            The platform is similar to Twitter/Reddit except with complete
+                            anonymity.
+                        </p>
+                        <p className="text-xl text-danger mt-8">
+                            OnlyBlair is NOT affiliated with Montgomery Blair High School in any
+                            way. Content on this platform is not verified and does not reflect the
+                            views of said school.
+                        </p>
+                        <p className="text-xl text-lightaccent dark:text-darkaccent mt-8">
+                            Note: You can change the theme at any time by clicking the lightbulb in
+                            the top right!
+                        </p>
                     </div>
                 );
             case 1:
                 return (
-                    <div className="auth-content-1">
-                        <h2>What is 4Blair?</h2>
-                        {RenderText(`4Blair is an anonymous private forum. \n
-                            The next page will authenticate you and make sure you're eligable to use this site. \n
-                            You will be prompted to enter your StudentVue login information. \n
-                            This information will be used a single time to verify your school. \n 
-                            Any posts you make are unable to be traced back to you UNLESS you post something bad enough to warrant legal or administrative action. \n
-                            TLDR: It's competely anonymous unless you post something REALLY REALLY bad.
-                            Input "accept" to accept these conditions and continue.`)}
+                    <div className="flex flex-col items-start justify-start w-full h-full">
+                        <h1 className="text-5xl font-bold">Rules</h1>
+                        <div className="text-xl list-disc flex flex-col gap-4 mt-4">
+                            <li>No slurs</li>
+                            <li>No NSFW content</li>
+                            <li>No spam</li>
+                            <li>No images of other people without their consent</li>
+                            <li>No test answers</li>
+                        </div>
                     </div>
                 );
             case 2:
                 return (
-                    <div className="auth-content-2">
-                        <form onSubmit={(e) => verifyUser(e)}>
-                            <input type="text" name="studentid" placeholder="Student ID" />
-                            <input
-                                type="password"
-                                name="sidpassword"
-                                placeholder="StudentVue Password"
-                            />
-                            <input type="submit" value="Verify" />
-                        </form>
+                    <div className="flex flex-col items-start justify-start w-full h-full">
+                        <h1 className="text-5xl font-bold">How do I use OnlyBlair?</h1>
+                        <p className="text-xl mt-8">
+                            OnlyBlair is very simple to use. <br /> <br /> You can make posts or
+                            reply to them. <br /> <br /> You can also like/dislike posts and replies
+                            with heavily disliked posts being hidden.
+                        </p>
+                    </div>
+                );
+            case 3:
+                return (
+                    <div className="flex flex-col items-start justify-start w-full h-full">
+                        <h1 className="text-5xl font-bold">Contact and Credits</h1>
+                    </div>
+                );
+            case 4:
+                return (
+                    <div className="flex flex-col items-start justify-start w-full h-full">
+                        <h1 className="text-5xl font-bold">Thank you for using OnlyBlair!</h1>
+                        <p className="text-xl mt-8">I hope you enjoy your time on OnlyBlair!</p>
                     </div>
                 );
             default:
-                return <div>Something went wrong.</div>;
+                return <h1>There was an error!</h1>;
         }
     };
 
-    const renderStageInput = () => {
-        const authInput = document.getElementById("auth-continue-answer");
-        if (authInput) {
-            if (authInput.value == stageAnswers[stage]) {
-                setError("");
-                setStage(stage + 1);
-            } else {
-                setError("Read.");
-            }
-        } else {
-            setError("Something went wrong.");
+    const canContinue = () => {
+        switch (step) {
+            default:
+                return true;
         }
     };
 
     return (
-        <div className="auth">
-            <div className="auth-card">
-                <div className="auth-title">
-                    <h1>Authentication</h1>
+        <div className="w-screen h-screen flex flex-col justify-center items-center p-10">
+            <Head>
+                <title>OnlyBlair</title>
+            </Head>
+            <div className="absolute top-2 right-2">
+                <ThemeSwitch />
+            </div>
+            <div className="w-full h-full bg-lightforeground dark:bg-darkforeground rounded-lg flex flex-col items-center justify-between">
+                <div className="w-full h-8 bg-lightaccentfaded dark:bg-darkaccentfaded rounded-t-lg">
+                    <div
+                        className="h-full w-0 bg-lightaccent dark:bg-darkaccent rounded-t-lg"
+                        ref={barRef}
+                    ></div>
                 </div>
-                <div className="auth-content">{renderStage()}</div>
-                <div className="auth-continue">
-                    <h1 className="auth-continue-error">{error}</h1>
-                    {stage !== 2 && (
-                        <input
-                            type="text"
-                            placeholder="answer"
-                            className="auth-continue-answer"
-                            id="auth-continue-answer"
-                        />
-                    )}
-                    <div className="auth-continue-button">
-                        {(stage !== 2 || authenticated) && (
-                            <button className="button-29" onClick={() => renderStageInput()}>
-                                Next
-                            </button>
-                        )}
-                    </div>
+                <div className="w-full h-full flex flex-col items-center justify-center p-8">
+                    {renderStep()}
+                </div>
+                <div className="w-full p-4 flex justify-between items-center">
+                    <button
+                        onClick={() => {
+                            if (step > 0) {
+                                setPrevStep(step);
+                                setStep(step - 1);
+                            }
+                        }}
+                        onMouseEnter={(e) => {
+                            gsap.to(e.target, {
+                                scale: 1.2,
+                                duration: 0.2,
+                            });
+                        }}
+                        onMouseLeave={(e) => {
+                            gsap.to(e.target, {
+                                scale: 1,
+                                duration: 0.2,
+                            });
+                        }}
+                        className="bg-lightaccent dark:bg-darkaccent text-black rounded-md mt-10 shadow-md shadow-current border-none px-8 py-2 text-lg hover:cursor-pointer"
+                    >
+                        Back
+                    </button>
+                    <div></div>
+                    <button
+                        onClick={() => {
+                            if (canContinue() && step < STEPS) {
+                                setPrevStep(step);
+                                setStep(step + 1);
+                            }
+                            if (step === STEPS) {
+                                Router.push("/posts");
+                            }
+                        }}
+                        onMouseEnter={(e) => {
+                            gsap.to(e.target, {
+                                scale: 1.2,
+                                duration: 0.2,
+                            });
+                        }}
+                        onMouseLeave={(e) => {
+                            gsap.to(e.target, {
+                                scale: 1,
+                                duration: 0.2,
+                            });
+                        }}
+                        className="bg-lightaccent dark:bg-darkaccent text-black rounded-md mt-10 shadow-md shadow-current border-none px-8 py-2 text-lg hover:cursor-pointer"
+                    >
+                        {step === STEPS ? "Continue" : "Next"}
+                    </button>
                 </div>
             </div>
         </div>

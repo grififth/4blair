@@ -8,14 +8,17 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                lightbackground: "#FFFFFF",
-                darkbackground: "#000000",
-                lightforeground: "#F7F7F7",
-                darkforeground: "#121212",
+                lightbackground: "#f4f5f7",
+                darkbackground: "#121212",
+                lightforeground: "#FFFFFF",
+                darkforeground: "#1f1f1f",
                 lighttext: "#000000",
                 darktext: "#FFFFFF",
                 lightaccent: "#0ea5e9",
-                darkaccent: "#e26baa",
+                darkaccent: "#8b5cf6",
+                lightaccentfaded: "rgba(14, 165, 233, 0.5)",
+                darkaccentfaded: "rgba(139, 92, 246, 0.5)",
+                danger: "#ff6961",
             },
         },
     },
