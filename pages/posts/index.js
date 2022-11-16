@@ -9,7 +9,7 @@ export default function Posts() {
     const [posts, setPosts] = useState(null);
 
     const getPosts = async () => {
-        fetch("/backend/getposts")
+        await fetch("/backend/getposts")
             .then((res) => res.json())
             .then((data) => {
                 setPosts(data);
@@ -20,7 +20,7 @@ export default function Posts() {
         getPosts();
     }, []);
 
-    console.log(posts);
+    console.table(posts);
 
     return (
         <div className="w-screen h-screen flex flex-col items-center">
