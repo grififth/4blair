@@ -31,7 +31,7 @@ export default function Auth() {
             );
         });
         return () => ctx.revert();
-    }, [step]);
+    }, [step, prevStep]);
 
     const renderStep = () => {
         switch (step) {
