@@ -1,8 +1,7 @@
-import Router from "next/router";
-
 import { useEffect, useState } from "react";
 
 import NavBar from "../../components/NavBar";
+import NewPostModal from "../../components/NewPostModal";
 import Post from "../../components/Post";
 
 export default function Posts() {
@@ -13,6 +12,9 @@ export default function Posts() {
             .then((res) => res.json())
             .then((data) => {
                 setPosts(data);
+            })
+            .catch((e) => {
+                console.error(e);
             });
     };
 
@@ -25,9 +27,14 @@ export default function Posts() {
     return (
         <div className="w-screen h-screen flex flex-col items-center">
             <NavBar />
-            <div className="w-full p-8 grid grid-cols-4">
-                <div className="col-span-1 bg-lightforeground dark:bg-darkforeground h-full mr-4 rounded-lg shadow-md"></div>
-                <div className="col-span-3 bg-lightforeground dark:bg-darkforeground ml-4 rounded-lg shadow-md p-4 flex flex-col gap-4">
+            <div className="w-full p-8 flex">
+                <div className="w-1/4 bg-lightforeground dark:bg-darkforeground mr-4 rounded-lg shadow-md">
+                    <button className="w-full p-4 bg-lightaccent dark:bg-darkaccent rounded-lg text-white font-bold">
+                        New Post
+                    </button>
+                    <NewPostModal />
+                </div>
+                <div className="w-3/4 bg-lightforeground dark:bg-darkforeground ml-4 rounded-lg shadow-md p-4 flex flex-col ">
                     {posts ? (
                         posts.map((post) => {
                             return <Post post={post} key={post.id} />;
