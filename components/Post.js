@@ -10,10 +10,10 @@ export default function Post({ post }) {
                 Router.push(`/posts/${post.id}`);
             }}
         >
-            <h1 className="text-2xl font-bold text-ellipsis whitespace-nowrap overflow-hidden block">
+            <h1 className="w-5/6 text-2xl font-bold text-ellipsis whitespace-nowrap overflow-hidden block">
                 {post.title}
             </h1>
-            <div className="w-1/12 h-full grid grid-cols-2 items-center justify-items-center">
+            <div className="w-1/6 h-full grid grid-cols-2 items-center justify-items-center">
                 <p className="col-span-1">{post.commentsCount}</p>
                 <p className="col-span-1 text-sm">{timeDiff(Date.parse(post.updatedAt))}</p>
             </div>

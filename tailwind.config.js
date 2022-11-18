@@ -18,7 +18,11 @@ module.exports = {
                 darkaccent: "#8b5cf6",
                 lightaccentfaded: "rgba(14, 165, 233, 0.5)",
                 darkaccentfaded: "rgba(139, 92, 246, 0.5)",
+                border: "#4d4d4d",
                 danger: "#ff6961",
+            },
+            borderWidth: {
+                1: "1px",
             },
         },
     },
