@@ -2,13 +2,16 @@ import { useEffect, useState } from "react";
 
 import NavBar from "../../components/NavBar";
 import NewPostModal from "../../components/NewPostModal";
+
 import Post from "../../components/Post";
 
 import { FiEdit } from "react-icons/fi";
 import { BiRefresh } from "react-icons/bi";
 
+import { PostType } from "../../utils/types";
+
 export default function Posts() {
-    const [posts, setPosts] = useState(null);
+    const [posts, setPosts] = useState<PostType[]>([]);
     const [showModal, setShowModal] = useState(false);
 
     const getPosts = async () => {
@@ -30,7 +33,7 @@ export default function Posts() {
     console.table(posts);
 
     return (
-        <div className="w-screen h-screen flex flex-col items-center">
+        <div className="w-screen flex flex-col items-center">
             <NavBar />
             {showModal && <NewPostModal setShowModal={setShowModal} />}
             <div className="w-full p-8 flex">

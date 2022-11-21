@@ -1,6 +1,8 @@
-const timeDiff = (date) => {
+import { useEffect, useLayoutEffect } from "react";
+
+const timeDiff = (date: Date) => {
     const now = new Date();
-    const diff = now - date;
+    const diff = Math.abs(now - date);
     const diffDays = Math.floor(diff / (1000 * 3600 * 24));
     const diffHours = Math.floor(diff / (1000 * 3600));
     const diffMinutes = Math.floor(diff / (1000 * 60));
@@ -19,4 +21,7 @@ const timeDiff = (date) => {
     }
 };
 
+const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
 export default timeDiff;
+export { useIsomorphicLayoutEffect };

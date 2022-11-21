@@ -7,7 +7,8 @@ import Link from "next/link";
 import Head from "next/head";
 
 import ThemeSwitch from "../components/ThemeSwitch";
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
+import { useIsomorphicLayoutEffect } from "../utils/globalFunctions";
 
 export default function Home() {
     const h1Ref = useRef(null);
@@ -16,8 +17,11 @@ export default function Home() {
     const lineRef = useRef(null);
     const themeSwitchRef = useRef(null);
     const timeline = useRef(null);
+    const pageRef = useRef(null);
 
-    useLayoutEffect(() => {
+    useIsomorphicLayoutEffect(() => {
+        pageRef.current.style.opacity = 1;
+
         const ctx = gsap.context(() => {
             timeline.current = gsap
                 .timeline()
@@ -70,7 +74,10 @@ export default function Home() {
     }, []);
 
     return (
-        <div className="w-screen h-screen flex flex-col justify-center items-center">
+        <div
+            className="w-screen h-screen flex flex-col justify-center items-center opacity-0"
+            ref={pageRef}
+        >
             <Head>
                 <title>OnlyBlair</title>
             </Head>
