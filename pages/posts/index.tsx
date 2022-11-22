@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import NavBar from "../../components/NavBar";
 import NewPostModal from "../../components/NewPostModal";
@@ -9,28 +9,24 @@ import { FiEdit } from "react-icons/fi";
 import { BiRefresh } from "react-icons/bi";
 
 import { PostType } from "../../utils/types";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Posts() {
-    const [posts, setPosts] = useState<PostType[]>([]);
     const [showModal, setShowModal] = useState(false);
 
-    const getPosts = async () => {
-        setPosts(null);
-        await fetch("/backend/getposts")
-            .then((res) => res.json())
-            .then((data) => {
-                setPosts(data);
-            })
-            .catch((e) => {
-                console.error(e);
-            });
-    };
+    const { isFetching, isLoading, error, data, isError, refetch } = useQuery({
+        queryKey: ["posts"],
+        refetchOnWindowFocus: false,
+        queryFn: () => fetch("/backend/getposts").then((res) => res.json()),
+    });
 
-    useEffect(() => {
-        getPosts();
-    }, []);
-
-    console.table(posts);
+    if (isError) {
+        return (
+            <div className="flex flex-col items-center justify-center h-screen">
+                <h1 className="text-3xl font-bold">Error</h1>
+            </div>
+        );
+    }
 
     return (
         <div className="w-screen flex flex-col items-center">
@@ -46,11 +42,11 @@ export default function Posts() {
                             New Post <FiEdit size={30} />
                         </button>
                     </div>
-                    {posts && (
+                    {!isFetching && (
                         <div className="bg-lightforeground dark:bg-darkforeground mr-4 rounded-lg shadow-md p-4 flex flex-col gap-4 border-1 border-border">
                             <button
                                 className="w-full p-4 bg-lightaccent dark:bg-darkaccent rounded-lg text-white font-bold flex items-center justify-center shadow-md gap-2"
-                                onClick={() => getPosts()}
+                                onClick={() => refetch()}
                             >
                                 Refresh <BiRefresh size={30} />
                             </button>
@@ -68,8 +64,8 @@ export default function Posts() {
                             <p className="col-span-1 text-sm">Updated</p>
                         </div>
                     </div>
-                    {posts ? (
-                        posts.map((post) => {
+                    {!isLoading ? (
+                        data.map((post: PostType) => {
                             return <Post post={post} key={post.id} />;
                         })
                     ) : (
