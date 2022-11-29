@@ -23,7 +23,10 @@ export default function Posts() {
     if (isError) {
         return (
             <div className="flex flex-col items-center justify-center h-screen">
-                <h1 className="text-3xl font-bold">Error</h1>
+                <h1 className="text-2xl font-bold">Error! Please let me know.</h1>
+                <h1 className="text-2xl font-bold">
+                    {error instanceof Error ? error.message : "An error has occurred"}
+                </h1>
             </div>
         );
     }
