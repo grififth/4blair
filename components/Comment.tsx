@@ -17,7 +17,7 @@ const Comment = ({ comment, setReplyToId }: CommentProps) => {
       )}
       <p className="text-lg">{comment["content"]}</p>
       <div className="flex justify-between text-sm">
-        <p>{timeDiff(Date.parse(comment["createdAt"]))}</p>
+        <p>{timeDiff(new Date(Date.parse(comment.createdAt)))}</p>
         <button onClick={() => setReplyToId(comment["id"])}>Reply</button>
       </div>
     </div>
