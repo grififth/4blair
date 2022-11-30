@@ -140,7 +140,7 @@ const Post = ({ pid }) => {
                 )}
                 <textarea
                   placeholder="Content"
-                  className="w-full h-36 p-4 rounded-lg bg-lightbackground dark:bg-darkbackground"
+                  className="w-full h-36 p-4 rounded-lg bg-lightbackground dark:bg-darkbackground border-1 border-border"
                   ref={contentRef}
                 />
 
