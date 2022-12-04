@@ -1,31 +1,31 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: [
-        "./app/**/*.{js,ts,jsx,tsx}",
-        "./pages/**/*.{js,ts,jsx,tsx}",
-        "./components/**/*.{js,ts,jsx,tsx}",
-    ],
-    theme: {
-        extend: {
-            colors: {
-                lightbackground: "#f4f5f7",
-                darkbackground: "#121212",
-                lightforeground: "#FFFFFF",
-                darkforeground: "#1f1f1f",
-                lighttext: "#000000",
-                darktext: "#FFFFFF",
-                lightaccent: "#0ea5e9",
-                darkaccent: "#8b5cf6",
-                lightaccentfaded: "rgba(14, 165, 233, 0.5)",
-                darkaccentfaded: "rgba(139, 92, 246, 0.5)",
-                border: "#4d4d4d",
-                danger: "#ff6961",
-            },
-            borderWidth: {
-                1: "1px",
-            },
-        },
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx}",
+    "./pages/**/*.{js,ts,jsx,tsx}",
+    "./components/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        accent: "var(--accent)",
+        accent2: "var(--accent2)",
+        button: "var(--button)",
+        text: "var(--text)",
+        textbutton: "var(--textbutton)",
+        texttitle: "var(--texttitle)",
+        placeholder: "var(--placeholder)",
+        shadow: "var(--shadow)",
+        border: "var(--border)",
+        danger: "var(--danger)",
+      },
+      borderWidth: {
+        1: "1px",
+      },
     },
-    plugins: [],
-    darkMode: "class",
+  },
+  plugins: [],
+  darkMode: "media",
 };

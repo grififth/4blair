@@ -38,7 +38,9 @@ export default function Auth() {
       case 0:
         return (
           <div className="flex flex-col items-start justify-start w-full h-full">
-            <h1 className="text-5xl font-bold">What is OnlyBlair?</h1>
+            <h1 className="text-5xl text-texttitle font-bold">
+              What is OnlyBlair?
+            </h1>
             <p className="text-xl mt-8">
               OnlyBlair is a completely anonymous private social platform.{" "}
               <br /> <br /> Since this is the beta test, there is no need to
@@ -51,7 +53,7 @@ export default function Auth() {
               any way. Content on this platform is not verified and does not
               reflect the views of said school.
             </p>
-            <p className="text-xl text-lightaccent dark:text-darkaccent mt-8">
+            <p className="text-xl text-accent mt-8">
               Note: You can change the theme at any time by clicking the
               lightbulb in the top right!
             </p>
@@ -60,7 +62,7 @@ export default function Auth() {
       case 1:
         return (
           <div className="flex flex-col items-start justify-start w-full h-full">
-            <h1 className="text-5xl font-bold">Rules</h1>
+            <h1 className="text-5xl text-texttitle font-bold">Rules</h1>
             <div className="text-xl list-disc flex flex-col gap-4 mt-4">
               <li>No slurs</li>
               <li>No NSFW content</li>
@@ -73,7 +75,9 @@ export default function Auth() {
       case 2:
         return (
           <div className="flex flex-col items-start justify-start w-full h-full">
-            <h1 className="text-5xl font-bold">How do I use OnlyBlair?</h1>
+            <h1 className="text-5xl text-texttitle font-bold">
+              How do I use OnlyBlair?
+            </h1>
             <p className="text-xl mt-8">
               OnlyBlair is very simple to use. <br /> <br /> You can make posts
               or reply to them. <br /> <br /> You can also like/dislike posts
@@ -84,14 +88,16 @@ export default function Auth() {
       case 3:
         return (
           <div className="flex flex-col items-start justify-start w-full h-full">
-            <h1 className="text-5xl font-bold">Contact and Credits</h1>
+            <h1 className="text-5xl text-texttitle font-bold">
+              Contact and Credits
+            </h1>
             <p className="text-xl mt-8">Nothing for now</p>
           </div>
         );
       case 4:
         return (
           <div className="flex flex-col items-start justify-start w-full h-full">
-            <h1 className="text-5xl font-bold">
+            <h1 className="text-5xl text-texttitle font-bold">
               Thank you for using OnlyBlair!
             </h1>
             <p className="text-xl mt-8">
@@ -112,19 +118,16 @@ export default function Auth() {
   };
 
   return (
-    <div className="w-screen h-screen flex flex-col justify-center items-center p-10">
+    <div className="w-screen h-screen flex flex-col justify-center items-center p-10 bg-background">
       <Head>
         <title>OnlyBlair</title>
       </Head>
       <div className="absolute top-2 right-2">
         <ThemeSwitch />
       </div>
-      <div className="w-full h-full bg-lightforeground dark:bg-darkforeground rounded-lg flex flex-col items-center justify-between">
-        <div className="w-full h-8 bg-lightaccentfaded dark:bg-darkaccentfaded rounded-t-lg">
-          <div
-            className="h-full w-0 bg-lightaccent dark:bg-darkaccent rounded-t-lg"
-            ref={barRef}
-          ></div>
+      <div className="w-full h-full bg-foreground rounded-lg flex flex-col items-center justify-between border-border border-1">
+        <div className="w-full h-8 rounded-t-lg border-transparent border-b-border border-1">
+          <div className="h-full w-0 bg-accent rounded-t-lg" ref={barRef}></div>
         </div>
         <div className="w-full h-full flex flex-col items-center justify-center p-8">
           {renderStep()}
@@ -149,7 +152,7 @@ export default function Auth() {
                 duration: 0.2,
               });
             }}
-            className="bg-lightaccent dark:bg-darkaccent text-black rounded-md mt-10 shadow-md shadow-current border-none px-8 py-2 text-lg hover:cursor-pointer"
+            className="bg-button text-textbutton rounded-md mt-10 shadow-md shadow-shadow border-none px-8 py-2 text-lg hover:cursor-pointer"
           >
             Back
           </button>
@@ -176,7 +179,7 @@ export default function Auth() {
                 duration: 0.2,
               });
             }}
-            className="bg-lightaccent dark:bg-darkaccent text-black rounded-md mt-10 shadow-md shadow-current border-none px-8 py-2 text-lg hover:cursor-pointer"
+            className="bg-button text-textbutton rounded-md mt-10 shadow-md shadow-shadow border-none px-8 py-2 text-lg hover:cursor-pointer"
           >
             {step === STEPS ? "Continue" : "Next"}
           </button>

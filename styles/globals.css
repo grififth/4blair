@@ -5,5 +5,72 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 body {
-    font-family: "Noto Sans", sans-serif;
+  font-family: "Noto Sans", sans-serif;
+}
+
+:root {
+  --background: #f4f5f7;
+  --foreground: #ffffff;
+  --accent: #0ea5e9;
+  --accent2: #0ea5e9;
+  --button: #0ea5e9;
+  --text: #000000;
+  --textbutton: #000000;
+  --texttitle: #0ea5e9;
+  --placeholder: #a1a1aa;
+  --shadow: black;
+  --border: #4d4d4d;
+  --danger: #ff6961;
+}
+
+[data-theme="dark"] {
+  --background: #121212;
+  --foreground: #1f1f1f;
+  --accent: #8b5cf6;
+  --accent2: #f472b6;
+  --button: #8b5cf6;
+  --text: #ffffff;
+  --textbutton: #ffffff;
+  --texttitle: #8b5cf6;
+  --placeholder: #ffffff;
+  --shadow: black;
+}
+
+[data-theme="pink"] {
+  --background: #f0c9db;
+  --foreground: #f0c9db;
+  --accent: #ff91a4;
+  --accent2: #ff91a4;
+  --button: #ff91a4;
+  --text: #000000;
+  --textbutton: #000000;
+  --texttitle: #f0c9db;
+  --placeholder: #000000;
+  --shadow: black;
+}
+
+[data-theme="gruvbox"] {
+  --background: #282828;
+  --foreground: #282828;
+  --accent: #cc241d;
+  --accent2: #b8bb26;
+  --button: #458588;
+  --text: #ffffff;
+  --textbutton: #ffffff;
+  --texttitle: #d79921;
+  --placeholder: #ffffff;
+  --shadow: black;
+}
+
+[data-theme="onedark"] {
+  --background: #282c34;
+  --foreground: #282c34;
+  --accent: #e06c75;
+  --accent2: #e5c07b;
+  --button: #98c379;
+  --text: #abb2bf;
+  --textbutton: #000000;
+  --texttitle: #61afef;
+  --placeholder: #abb2bf;
+  --shadow: black;
 }

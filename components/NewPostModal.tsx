@@ -75,11 +75,11 @@ export default function NewPostModal({ setShowModal }) {
   return (
     <div className="w-screen h-screen absolute top-0 left-0 bg-opacity-50 bg-black flex items-center justify-center">
       <div
-        className="w-3/4 h-3/4 p-4 bg-lightforeground dark:bg-darkforeground flex flex-col gap-4 rounded-lg shadow-md border-border border-1"
+        className="w-3/4 h-3/4 p-4 bg-foreground flex flex-col gap-4 rounded-lg shadow-md border-border border-1"
         ref={modalRef}
       >
         <div className="flex flex-row justify-between items-center">
-          <h1 className="text-2xl">New Post</h1>
+          <h1 className="text-2xl text-texttitle">New Post</h1>
           <button
             className="p-2 rounded-lg bg-danger text-white"
             onClick={() => setShowModal(false)}
@@ -90,23 +90,23 @@ export default function NewPostModal({ setShowModal }) {
 
         <input
           type="text"
-          placeholder="Title"
-          className="w-full p-4 rounded-lg border-1 border-border bg-lightbackground dark:bg-darkbackground"
+          placeholder="Title Here"
+          className="w-full p-4 rounded-lg border-1 border-border bg-foreground placeholder-placeholder"
           onChange={(e) => setTitle(e.target.value)}
         />
-        <p className="text-sm text-lightaccent dark:text-darkaccent">
+        <p className="text-sm text-accent ">
           {title.length}/{TITLELIMIT}
         </p>
         <textarea
           placeholder="Content"
-          className="w-full h-full p-4 rounded-lg border-1 border-border bg-lightbackground dark:bg-darkbackground"
+          className="w-full h-full p-4 rounded-lg border-1 border-border bg-foreground placeholder-placeholder"
           onChange={(e) => setContent(e.target.value)}
         />
-        <p className="text-sm text-lightaccent dark:text-darkaccent">
+        <p className="text-sm text-accent ">
           {content.length}/{CONTENTLIMIT}
         </p>
         <button
-          className="w-full p-4 bg-lightaccent dark:bg-darkaccent rounded-lg text-white font-bold flex items-center justify-center shadow-md gap-2"
+          className="w-full p-4 bg-button rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2"
           onClick={newPost}
         >
           Post
