@@ -74,3 +74,16 @@ body {
   --placeholder: #abb2bf;
   --shadow: black;
 }
+
+[data-theme="dracula"] {
+  --background: #282a36;
+  --foreground: #282a36;
+  --accent: #bd93f9;
+  --accent2: #ff79c6;
+  --button: #ff5555;
+  --text: #f8f8f2;
+  --textbutton: #f8f8f2;
+  --texttitle: #8be9fd;
+  --placeholder: #f8f8f2;
+  --shadow: black;
+}

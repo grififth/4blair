@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 
 import { HiOutlineLightBulb } from "react-icons/hi";
 
-const themes = ["light", "gruvbox", "onedark", "dark"];
+const themes = ["light", "gruvbox", "onedark", "dracula", "dark"];
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
