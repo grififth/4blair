@@ -127,7 +127,7 @@ const Post = ({ pid }) => {
       )}
       <NavBar />
       {post && (
-        <div className="w-2/3 p-4 flex flex-col items-center gap-4">
+        <div className="w-full lg:w-2/3 p-2 lg:p-4 flex flex-col items-center gap-4">
           <div className="w-full p-4 bg-foreground rounded-lg shadow-md flex flex-col gap-4 border-1 border-border">
             <h1 className="text-3xl font-bold text-texttitle ">
               {post && post["title"]}
@@ -190,7 +190,7 @@ const Post = ({ pid }) => {
               )}
               {!isLoading && !isFetchingNextPage && hasNextPage && (
                 <button
-                  className="w-1/2 p-4 bg-button text-textbuton rounded-lg shadow-md flex flex-col border-1 border-border"
+                  className="w-1/2 p-4 bg-button text-textbutton rounded-lg shadow-md flex flex-col border-1 border-border"
                   onClick={() => fetchNextPage()}
                 >
                   Load More (W)

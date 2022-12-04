@@ -89,20 +89,26 @@ export default function Home() {
         <ThemeSwitch />
       </div>
       <div className="flex flex-col gap-2 items-center">
-        <h1 className="text-9xl text-text font-bold text-center" ref={h1Ref}>
+        <h1
+          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl text-text font-bold text-center"
+          ref={h1Ref}
+        >
           OnlyBlair
         </h1>
         <div
-          className="w-[120%] h-2 bg-accent rounded-full"
+          className="w-3/4 lg:w-[120%] h-2 bg-accent rounded-full"
           ref={lineRef}
         ></div>
-        <p className="text-center text-text text-2xl mt-4" ref={pRef}>
+        <p
+          className="text-center text-text text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl mt-4"
+          ref={pRef}
+        >
           Private, Secure, Completely Anonymous Social Platform
         </p>
       </div>
       <Link href="/auth">
         <a
-          className="bg-button text-textbutton rounded-md mt-10 shadow-shadow shadow-md border-none px-8 py-2 text-lg hover:cursor-pointer"
+          className="bg-button text-textbutton rounded-md mt-10 shadow-shadow shadow-md border-none px-8 py-2 text-sm lg:text-lg hover:cursor-pointer"
           onMouseEnter={(e) => {
             gsap.to(e.target, {
               scale: 1.2,

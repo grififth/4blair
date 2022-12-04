@@ -39,9 +39,9 @@ export default function Posts() {
       </Head>
       <NavBar />
       {showModal && <NewPostModal setShowModal={setShowModal} />}
-      <div className="w-full p-8 flex">
-        <div className="w-1/4 flex flex-col gap-4">
-          <div className="bg-foreground mr-4 rounded-lg shadow-md p-4 flex flex-col gap-4 border-1 border-border">
+      <div className="w-full p-2 lg:p-8 flex flex-col lg:flex-row justify-center gap-2">
+        <div className="w-full lg:w-1/4 flex flex-col gap-4 justify-center lg:justify-start">
+          <div className="w-full bg-foreground mr-4 rounded-lg shadow-md p-4 flex flex-col gap-4 border-1 border-border">
             <button
               className="w-full p-4 bg-button rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2"
               onClick={() => setShowModal(true)}
@@ -50,7 +50,7 @@ export default function Posts() {
             </button>
           </div>
           {!isFetching && (
-            <div className="bg-foreground mr-4 rounded-lg shadow-md p-4 flex flex-col gap-4 border-1 border-border">
+            <div className="w-full bg-foreground mr-4 rounded-lg shadow-md p-4 flex flex-col gap-4 border-1 border-border">
               <button
                 className="w-full p-4 bg-button rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2"
                 onClick={() => refetch()}
@@ -60,13 +60,13 @@ export default function Posts() {
             </div>
           )}
         </div>
-        <div className="w-3/4 bg-foreground ml-4 rounded-lg shadow-md p-4 flex flex-col border-1 border-border">
+        <div className="w-full lg:w-3/4 bg-foreground rounded-lg shadow-md gap-4 lg:gap-0 p-2 lg:p-4 lg:ml-4 flex flex-col border-1 border-border">
           <div className="flex flex-row justify-between items-center p-4 border-2 border-transparent border-b-accent mb-2">
             <h1 className="text-2xl font-bold text-ellipsis whitespace-nowrap overflow-hidden block">
               Posts
             </h1>
 
-            <div className="w-1/6 h-full grid grid-cols-2 items-center justify-items-center">
+            <div className="opacity-0 lg:opacity-100 w-1/6 h-full grid grid-cols-2 items-center justify-items-center">
               <p className="col-span-1">Comments</p>
               <p className="col-span-1 text-sm">Updated</p>
             </div>
