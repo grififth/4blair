@@ -8,6 +8,8 @@ import { GetServerSideProps } from "next";
 
 import { MdClose } from "react-icons/md";
 
+import Head from "next/head";
+
 const Post = ({ pid }) => {
   const [replyToId, setReplyToId] = useState<number>(null);
   const [statusMessage, setStatusMessage] = useState<string>("");
@@ -102,6 +104,9 @@ const Post = ({ pid }) => {
 
     return (
       <div className="flex flex-col items-center justify-center h-screen">
+        <Head>
+          <title>Error!</title>
+        </Head>
         <h1 className="text-4xl font-bold text-center">
           There was an error! Please let me know.
         </h1>
@@ -112,6 +117,14 @@ const Post = ({ pid }) => {
 
   return (
     <div className="flex flex-col items-center">
+      <Head>
+        <title>Loading...</title>
+      </Head>
+      {post && (
+        <Head>
+          <title>{post["title"]}</title>
+        </Head>
+      )}
       <NavBar />
       {post && (
         <div className="w-2/3 p-4 flex flex-col items-center gap-4">

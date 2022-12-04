@@ -10,6 +10,7 @@ import { BiRefresh } from "react-icons/bi";
 
 import { PostType } from "../../utils/types";
 import { useQuery } from "@tanstack/react-query";
+import Head from "next/head";
 
 export default function Posts() {
   const [showModal, setShowModal] = useState(false);
@@ -33,6 +34,9 @@ export default function Posts() {
 
   return (
     <div className="w-screen flex flex-col items-center">
+      <Head>
+        <title>Posts</title>
+      </Head>
       <NavBar />
       {showModal && <NewPostModal setShowModal={setShowModal} />}
       <div className="w-full p-8 flex">
