@@ -5,7 +5,7 @@ import timeDiff from "../utils/globalFunctions";
 export default function Post({ post }) {
   return (
     <div
-      className="flex flex-col lg:flex-row justify-between items-center hover:border-accent rounded-lg lg:p-4 border-2 border-transparent"
+      className="flex flex-col lg:flex-row justify-between items-center hover:border-accent hover:cursor-pointer rounded-lg lg:p-4 border-2 border-transparent"
       onClick={() => {
         Router.push(`/posts/${post.id}`);
       }}

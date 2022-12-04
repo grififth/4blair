@@ -11,13 +11,13 @@ body {
 :root {
   --background: #f4f5f7;
   --foreground: #ffffff;
-  --accent: #0ea5e9;
-  --accent2: #0ea5e9;
-  --button: #0ea5e9;
-  --text: #000000;
+  --accent: #8839ef;
+  --accent2: #dc8a78;
+  --button: #04a5e5;
+  --text: #4c4f69;
   --textbutton: #000000;
-  --texttitle: #0ea5e9;
-  --placeholder: #a1a1aa;
+  --texttitle: #d20f39;
+  --placeholder: #a1a1a1;
   --shadow: black;
   --border: #4d4d4d;
   --danger: #ff6961;
@@ -85,5 +85,5 @@ body {
   --textbutton: #f8f8f2;
   --texttitle: #8be9fd;
   --placeholder: #f8f8f2;
-  --shadow: black;
+  --shadow: none;
 }

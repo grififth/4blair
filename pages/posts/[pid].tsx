@@ -167,7 +167,7 @@ const Post = ({ pid }) => {
                   </div>
                 )}
                 <button
-                  className="w-full p-2 bg-button text-textbutton rounded-lg shadow-md border-1 border-border"
+                  className="w-full p-2 bg-button text-textbutton font-bold rounded-lg shadow-md border-1 border-border"
                   onClick={() => postComment()}
                 >
                   Submit
@@ -190,7 +190,7 @@ const Post = ({ pid }) => {
               )}
               {!isLoading && !isFetchingNextPage && hasNextPage && (
                 <button
-                  className="w-1/2 p-4 bg-button text-textbutton rounded-lg shadow-md flex flex-col border-1 border-border"
+                  className="w-1/2 p-4 bg-button text-textbutton font-bold rounded-lg shadow-md flex flex-col border-1 border-border"
                   onClick={() => fetchNextPage()}
                 >
                   Load More (W)
