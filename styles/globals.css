@@ -9,8 +9,8 @@ body {
 }
 
 :root {
-  --background: #f4f5f7;
-  --foreground: #ffffff;
+  --background: #dce0e8;
+  --foreground: #eff1f5;
   --accent: #8839ef;
   --accent2: #dc8a78;
   --button: #04a5e5;
@@ -55,10 +55,10 @@ body {
   --accent: #cc241d;
   --accent2: #b8bb26;
   --button: #458588;
-  --text: #ffffff;
-  --textbutton: #ffffff;
+  --text: #ebdbb2;
+  --textbutton: #ebdbb2;
   --texttitle: #d79921;
-  --placeholder: #ffffff;
+  --placeholder: #ebdbb2;
   --shadow: black;
 }
 
