@@ -132,7 +132,7 @@ const Post = ({ pid }) => {
             <h1 className="text-3xl font-bold text-texttitle ">
               {post && post["title"]}
             </h1>
-            <p className="text-lg whitespace-pre-wrap">
+            <p className="w-full text-lg whitespace-pre-wrap break-all">
               {post && post["content"]}
             </p>
           </div>
