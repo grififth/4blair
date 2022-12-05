@@ -54,8 +54,8 @@ export default function Auth() {
               reflect the views of said school.
             </p>
             <p className="text-sm sm:text-lg lg:text-xl text-accent">
-              Note: You can change the theme at any time by clicking the
-              lightbulb in the top right!
+              Note: You can change the theme at any time by clicking the icon in
+              the top right!
             </p>
           </div>
         );

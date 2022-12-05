@@ -1,8 +1,8 @@
 import { useTheme } from "next-themes";
 
-import { HiOutlineLightBulb } from "react-icons/hi";
+import { BiPalette } from "react-icons/bi";
 
-const themes = ["light", "gruvbox", "onedark", "dracula", "dark"];
+const themes = ["light", "gruvbox", "onedark", "dracula"];
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();
@@ -15,7 +15,7 @@ export default function ThemeSwitch() {
           setTheme(themes[(themes.indexOf(theme) + 1) % themes.length]);
         }}
       >
-        <HiOutlineLightBulb style={{ width: "100%", height: "100%" }} />
+        <BiPalette style={{ width: "100%", height: "100%" }} />
       </button>
     </div>
   );
