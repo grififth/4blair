@@ -132,7 +132,9 @@ const Post = ({ pid }) => {
             <h1 className="text-3xl font-bold text-texttitle ">
               {post && post["title"]}
             </h1>
-            <p className="text-justify text-lg">{post && post["content"]}</p>
+            <p className="text-lg whitespace-pre-wrap">
+              {post && post["content"]}
+            </p>
           </div>
           {comments && (
             <div className="w-full flex flex-col items-center gap-2">
@@ -157,7 +159,7 @@ const Post = ({ pid }) => {
                 )}
                 <textarea
                   placeholder="Content"
-                  className="w-full h-36 p-4 rounded-lg bg-foreground border-1 border-border placeholder-placeholder"
+                  className="w-full h-36 p-4 rounded-lg bg-foreground border-1 border-border placeholder-placeholder whitespace-pre-wrap"
                   ref={contentRef}
                 />
 

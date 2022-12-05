@@ -16,7 +16,7 @@ const Comment = ({ comment, setReplyToId, newCommentRef }: CommentProps) => {
           {comment["replyToContent"]}
         </h2>
       )}
-      <p className="text-lg">{comment["content"]}</p>
+      <p className="text-lg whitespace-pre-wrap">{comment["content"]}</p>
       <div className="flex justify-between text-sm">
         <p>{timeDiff(new Date(Date.parse(comment.createdAt)))}</p>
         <button

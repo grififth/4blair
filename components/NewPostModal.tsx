@@ -99,7 +99,7 @@ export default function NewPostModal({ setShowModal }) {
         </p>
         <textarea
           placeholder="Content"
-          className="w-full h-full p-4 rounded-lg border-1 border-border bg-foreground placeholder-placeholder"
+          className="w-full h-full p-4 rounded-lg border-1 border-border bg-foreground placeholder-placeholder whitespace-pre-wrap"
           onChange={(e) => setContent(e.target.value)}
         />
         <p className="text-sm text-accent ">

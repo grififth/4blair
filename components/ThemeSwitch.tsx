@@ -2,7 +2,7 @@ import { useTheme } from "next-themes";
 
 import { BiPalette } from "react-icons/bi";
 
-const themes = ["light", "gruvbox", "onedark", "dracula"];
+const themes = ["light", "pink", "gruvbox", "onedark", "dracula", "dark"];
 
 export default function ThemeSwitch() {
   const { theme, setTheme } = useTheme();

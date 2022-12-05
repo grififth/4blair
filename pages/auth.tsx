@@ -67,7 +67,6 @@ export default function Auth() {
             </h1>
             <div className="text-sm sm:text-lg lg:text-xl list-disc flex flex-col gap-4 mt-4">
               <li>No slurs</li>
-              <li>No NSFW content</li>
               <li>No spam</li>
               <li>No images of other people without their consent</li>
               <li>No test answers</li>

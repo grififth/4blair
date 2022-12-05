@@ -37,15 +37,15 @@ body {
 }
 
 [data-theme="pink"] {
-  --background: #fdc8d9;
-  --foreground: #fcdee9;
-  --accent: #b845e8;
-  --accent2: #f472b6;
-  --button: #b845e8;
-  --text: #995fab;
-  --textbutton: #ffffff;
-  --texttitle: #b845e8;
-  --placeholder: #995fab;
+  --background: #fcc2ef;
+  --foreground: #f9d9f9;
+  --accent: #e345ff;
+  --accent2: #8b5cf6;
+  --button: #f14c8f;
+  --text: black;
+  --textbutton: black;
+  --texttitle: #f14c8f;
+  --placeholder: black;
   --shadow: black;
 }
 
