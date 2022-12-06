@@ -1,3 +1,4 @@
+import { CookieValueTypes, getCookie, setCookie } from "cookies-next";
 import { useEffect, useLayoutEffect } from "react";
 
 const timeDiff = (date: Date) => {
@@ -25,5 +26,40 @@ const timeDiff = (date: Date) => {
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
+const parseReadCookies = (cookie: CookieValueTypes) => {
+  if (typeof cookie === "boolean") return {};
+  if (!cookie) return {};
+  //cookie will be in the form [id]=[amount],[id]=[amount]
+  const parsedCookie = cookie.split(",");
+  let parsedCookieObj = {};
+  for (let i = 0; i < parsedCookie.length; i++) {
+    if (parsedCookie[i] === "") continue;
+    const [id, amount] = parsedCookie[i].split("=");
+    if (isNaN(parseInt(amount))) continue;
+    const intId = parseInt(id);
+    const intAmount = parseInt(amount);
+    parsedCookieObj[intId] = intAmount;
+  }
+  return parsedCookieObj;
+};
+
+const setReadCookies = (key: number, value: number) => {
+  if (!key) return;
+  const cookie = getCookie("readPosts");
+  const parsedCookie = parseReadCookies(cookie);
+
+  parsedCookie[key] = value;
+
+  let cookieString = "";
+
+  for (const [id, amount] of Object.entries(parsedCookie)) {
+    cookieString += `${id}=${amount},`;
+  }
+
+  setCookie("readPosts", cookieString);
+};
+
 export default timeDiff;
 export { useIsomorphicLayoutEffect };
+
+export { parseReadCookies, setReadCookies };

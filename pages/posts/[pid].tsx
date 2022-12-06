@@ -9,6 +9,7 @@ import { GetServerSideProps } from "next";
 import { MdClose } from "react-icons/md";
 
 import Head from "next/head";
+import { setReadCookies } from "../../utils/globalFunctions";
 
 const Post = ({ pid }) => {
   const [replyToId, setReplyToId] = useState<number>(null);
@@ -68,6 +69,14 @@ const Post = ({ pid }) => {
       window.removeEventListener("keypress", handleKeyPress);
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
+
+  //Set Cookie
+
+  useEffect(() => {
+    if (post) {
+      setReadCookies(post.id, post.commentsCount);
+    }
+  }, [post, pid]);
 
   const postComment = async () => {
     if (isSubmitting.current) return;

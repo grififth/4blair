@@ -12,7 +12,12 @@ import { PostType } from "../../utils/types";
 import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 
-export default function Posts() {
+import { GetServerSideProps } from "next";
+import { parseReadCookies } from "../../utils/globalFunctions";
+import { getCookie } from "cookies-next";
+
+export default function Posts({ readPosts }) {
+  console.log(readPosts);
   const [showModal, setShowModal] = useState(false);
 
   const { isFetching, isLoading, error, data, isError, refetch } = useQuery({
@@ -73,7 +78,13 @@ export default function Posts() {
           </div>
           {!isLoading ? (
             data.map((post: PostType) => {
-              return <Post post={post} key={post.id} />;
+              return (
+                <Post
+                  post={post}
+                  key={post.id}
+                  read={post.id in readPosts ? readPosts[post.id] : -1}
+                />
+              );
             })
           ) : (
             <div className="w-full h-full flex justify-center items-center">
@@ -87,3 +98,13 @@ export default function Posts() {
     </div>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const readPosts = getCookie("readPosts", { req, res });
+  const parsedReadPost = parseReadCookies(readPosts);
+  return {
+    props: {
+      readPosts: parsedReadPost,
+    },
+  };
+};
