@@ -2,10 +2,9 @@ import { useLayoutEffect, useRef, useState } from "react";
 
 import gsap from "gsap";
 
-import Head from "next/head";
-
 import ThemeSwitch from "../components/ThemeSwitch";
 import Router from "next/router";
+import CustomHead from "../components/CustomHead";
 
 const STEPS = 4;
 
@@ -122,9 +121,7 @@ export default function Auth() {
 
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center p-10 bg-background">
-      <Head>
-        <title>OnlyBlair</title>
-      </Head>
+      <CustomHead />
       <div className="absolute top-2 right-2">
         <ThemeSwitch />
       </div>

@@ -2,14 +2,12 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import NavBar from "../../components/NavBar";
 import Comment from "../../components/Comment";
 
-import { CommentType, PostType } from "../../utils/types";
+import { CommentType } from "../../utils/types";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 import { GetServerSideProps } from "next";
 
-import { MdClose } from "react-icons/md";
-
-import Head from "next/head";
 import { setReadCookies } from "../../utils/globalFunctions";
+import CustomHead from "../../components/CustomHead";
 
 const Post = ({ pid }) => {
   const [replyToId, setReplyToId] = useState<number>(null);
@@ -113,9 +111,7 @@ const Post = ({ pid }) => {
 
     return (
       <div className="flex flex-col items-center justify-center h-screen">
-        <Head>
-          <title>Error!</title>
-        </Head>
+        <CustomHead title="Error" />
         <h1 className="text-4xl font-bold text-center">
           There was an error! Please let me know.
         </h1>
@@ -126,14 +122,8 @@ const Post = ({ pid }) => {
 
   return (
     <div className="flex flex-col items-center">
-      <Head>
-        <title>Loading...</title>
-      </Head>
-      {post && (
-        <Head>
-          <title>{post["title"]}</title>
-        </Head>
-      )}
+      <CustomHead title="Loading..." />
+      {post && <CustomHead title={post.title} />}
       <NavBar />
       {post && (
         <div className="w-full lg:w-2/3 p-2 lg:p-4 flex flex-col items-center gap-4">

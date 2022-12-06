@@ -4,11 +4,10 @@ import gsap from "gsap";
 
 import Link from "next/link";
 
-import Head from "next/head";
-
 import ThemeSwitch from "../components/ThemeSwitch";
 import { useRef } from "react";
 import { useIsomorphicLayoutEffect } from "../utils/globalFunctions";
+import CustomHead from "../components/CustomHead";
 
 export default function Home() {
   const h1Ref = useRef(null);
@@ -82,9 +81,7 @@ export default function Home() {
       className="w-screen h-screen flex flex-col justify-center items-center opacity-0"
       ref={pageRef}
     >
-      <Head>
-        <title>OnlyBlair</title>
-      </Head>
+      <CustomHead />
       <div className="absolute top-2 right-2" ref={themeSwitchRef}>
         <ThemeSwitch />
       </div>

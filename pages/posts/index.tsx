@@ -9,12 +9,12 @@ import { FiEdit } from "react-icons/fi";
 import { BiRefresh } from "react-icons/bi";
 
 import { PostType } from "../../utils/types";
-import Head from "next/head";
 
 import { GetServerSideProps } from "next";
 import { parseReadCookies } from "../../utils/globalFunctions";
 import { getCookie } from "cookies-next";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import CustomHead from "../../components/CustomHead";
 
 export default function Posts({ readPosts }) {
   const [showModal, setShowModal] = useState(false);
@@ -61,9 +61,7 @@ export default function Posts({ readPosts }) {
 
   return (
     <div className="w-screen flex flex-col items-center">
-      <Head>
-        <title>Posts</title>
-      </Head>
+      <CustomHead title="Posts" />
       <NavBar />
       {showModal && <NewPostModal setShowModal={setShowModal} />}
       <div className="w-full p-2 lg:p-8 flex flex-col lg:flex-row justify-center gap-2">
