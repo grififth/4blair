@@ -86,20 +86,20 @@ export default function Posts({ readPosts }) {
               </button>
               <div className="w-full flex gap-2">
                 <button
-                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                  className={`w-full p-2 rounded-lg font-bold flex items-center justify-center shadow-md gap-2 ${
                     column === "updatedAt"
-                      ? "bg-button"
-                      : "bg-transparent border-1 border-border"
+                      ? "bg-button text-textbutton"
+                      : "bg-transparent border-1 border-border text-text"
                   }`}
                   onClick={() => setColumn("updatedAt")}
                 >
                   Time
                 </button>
                 <button
-                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                  className={`w-full p-2 rounded-lg font-bold flex items-center justify-center shadow-md gap-2 ${
                     column === "commentsCount"
-                      ? "bg-button"
-                      : "bg-transparent border-1 border-border"
+                      ? "bg-button text-textbutton"
+                      : "bg-transparent border-1 border-border text-text"
                   }`}
                   onClick={() => setColumn("commentsCount")}
                 >
@@ -108,20 +108,20 @@ export default function Posts({ readPosts }) {
               </div>
               <div className="w-full flex gap-2">
                 <button
-                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                  className={`w-full p-2 rounded-lg font-bold flex items-center justify-center shadow-md gap-2 ${
                     order === "asc"
-                      ? "bg-button"
-                      : "bg-transparent border-1 border-border"
+                      ? "bg-button text-textbutton"
+                      : "bg-transparent border-1 border-border text-text"
                   }`}
                   onClick={() => setOrder("asc")}
                 >
                   Ascending
                 </button>
                 <button
-                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                  className={`w-full p-2 rounded-lg font-bold flex items-center justify-center shadow-md gap-2 ${
                     order === "desc"
-                      ? "bg-button"
-                      : "bg-transparent border-1 border-border"
+                      ? "bg-button text-textbutton"
+                      : "bg-transparent border-1 border-border text-text"
                   }`}
                   onClick={() => setOrder("desc")}
                 >
