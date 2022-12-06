@@ -9,11 +9,13 @@ import { GetServerSideProps } from "next";
 import { setReadCookies } from "../../utils/globalFunctions";
 import CustomHead from "../../components/CustomHead";
 
+const COMMENT_LIMIT = 500;
+
 const Post = ({ pid }) => {
   const [replyToId, setReplyToId] = useState<number>(null);
   const [statusMessage, setStatusMessage] = useState<string>("");
 
-  const contentRef = useRef(null);
+  const [content, setContent] = useState("");
   const isSubmitting = useRef(false);
   const newCommentRef = useRef(null);
 
@@ -78,6 +80,7 @@ const Post = ({ pid }) => {
 
   const postComment = async () => {
     if (isSubmitting.current) return;
+    if (content.length > COMMENT_LIMIT) return;
     isSubmitting.current = true;
     const req = await fetch("/backend/createcomment", {
       method: "POST",
@@ -86,7 +89,7 @@ const Post = ({ pid }) => {
       },
       body: JSON.stringify({
         postId: pid,
-        content: contentRef.current.value,
+        content,
         replyToId: replyToId,
       }),
     });
@@ -159,8 +162,14 @@ const Post = ({ pid }) => {
                 <textarea
                   placeholder="Content"
                   className="w-full h-36 p-4 rounded-lg bg-foreground border-1 border-border placeholder-placeholder whitespace-pre-wrap"
-                  ref={contentRef}
+                  onChange={(e) => {
+                    setContent(e.target.value);
+                  }}
                 />
+
+                <p className="text-sm text-accent2">
+                  {`${content.length}/${COMMENT_LIMIT}`}
+                </p>
 
                 {statusMessage && (
                   <div className="w-full text-md text-accent ">
