@@ -17,7 +17,6 @@ import { parseReadCookies } from "../../utils/globalFunctions";
 import { getCookie } from "cookies-next";
 
 export default function Posts({ readPosts }) {
-  console.log(readPosts);
   const [showModal, setShowModal] = useState(false);
 
   const { isFetching, isLoading, error, data, isError, refetch } = useQuery({

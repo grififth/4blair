@@ -75,7 +75,7 @@ export default function NewPostModal({ setShowModal }) {
   return (
     <div className="w-screen h-screen absolute top-0 left-0 bg-opacity-50 bg-black flex items-center justify-center">
       <div
-        className="w-3/4 h-3/4 p-4 bg-foreground flex flex-col gap-4 rounded-lg shadow-md border-border border-1"
+        className="w-11/12 lg:w-3/4 h-5/6 lg:h-3/4 p-4 bg-foreground flex flex-col gap-4 rounded-lg shadow-md border-border border-1"
         ref={modalRef}
       >
         <div className="flex flex-row justify-between items-center">
