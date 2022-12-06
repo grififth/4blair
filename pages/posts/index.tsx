@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import NavBar from "../../components/NavBar";
 import NewPostModal from "../../components/NewPostModal";
@@ -9,20 +9,43 @@ import { FiEdit } from "react-icons/fi";
 import { BiRefresh } from "react-icons/bi";
 
 import { PostType } from "../../utils/types";
-import { useQuery } from "@tanstack/react-query";
 import Head from "next/head";
 
 import { GetServerSideProps } from "next";
 import { parseReadCookies } from "../../utils/globalFunctions";
 import { getCookie } from "cookies-next";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 export default function Posts({ readPosts }) {
   const [showModal, setShowModal] = useState(false);
 
-  const { isFetching, isLoading, error, data, isError, refetch } = useQuery({
-    queryKey: ["posts"],
+  /* const { isFetching, isLoading, error, data, isError, refetch } = useQuery({ */
+  /*   queryKey: ["posts"], */
+  /*   refetchOnWindowFocus: false, */
+  /*   queryFn: () => fetch("/backend/getposts").then((res) => res.json()), */
+  /* }); */
+
+  const [order, setOrder] = useState("desc");
+  const [column, setColumn] = useState("updatedAt");
+
+  const {
+    data: posts,
+    isLoading,
+    error,
+    isError,
+    hasNextPage,
+    fetchNextPage,
+    isFetchingNextPage,
+    isFetching,
+    refetch,
+  } = useInfiniteQuery({
+    queryKey: ["posts", order, column],
+    queryFn: ({ pageParam = "" }) =>
+      fetch(
+        `/backend/getposts?column=${column}&order=${order}&cursor=${pageParam}`
+      ).then((res) => res.json()),
+    getNextPageParam: (lastPage) => lastPage.nextId ?? false,
     refetchOnWindowFocus: false,
-    queryFn: () => fetch("/backend/getposts").then((res) => res.json()),
   });
 
   if (isError) {
@@ -61,6 +84,50 @@ export default function Posts({ readPosts }) {
               >
                 Refresh <BiRefresh size={30} />
               </button>
+              <div className="w-full flex gap-2">
+                <button
+                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                    column === "updatedAt"
+                      ? "bg-button"
+                      : "bg-transparent border-1 border-border"
+                  }`}
+                  onClick={() => setColumn("updatedAt")}
+                >
+                  Time
+                </button>
+                <button
+                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                    column === "commentsCount"
+                      ? "bg-button"
+                      : "bg-transparent border-1 border-border"
+                  }`}
+                  onClick={() => setColumn("commentsCount")}
+                >
+                  Comments
+                </button>
+              </div>
+              <div className="w-full flex gap-2">
+                <button
+                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                    order === "asc"
+                      ? "bg-button"
+                      : "bg-transparent border-1 border-border"
+                  }`}
+                  onClick={() => setOrder("asc")}
+                >
+                  Ascending
+                </button>
+                <button
+                  className={`w-full p-2 rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2 ${
+                    order === "desc"
+                      ? "bg-button"
+                      : "bg-transparent border-1 border-border"
+                  }`}
+                  onClick={() => setOrder("desc")}
+                >
+                  Descending
+                </button>
+              </div>
             </div>
           )}
         </div>
@@ -76,21 +143,32 @@ export default function Posts({ readPosts }) {
             </div>
           </div>
           {!isLoading ? (
-            data.map((post: PostType) => {
-              return (
-                <Post
-                  post={post}
-                  key={post.id}
-                  read={post.id in readPosts ? readPosts[post.id] : -1}
-                />
-              );
-            })
+            posts.pages.map((page, i) => (
+              <Fragment key={i}>
+                {page.posts &&
+                  page.posts.map((post: PostType) => (
+                    <Post
+                      post={post}
+                      key={post.id}
+                      read={post.id in readPosts ? readPosts[post.id] : -1}
+                    />
+                  ))}
+              </Fragment>
+            ))
           ) : (
             <div className="w-full h-full flex justify-center items-center">
               <div className="animate-spin w-16 h-16 rounded-full bg-gradient-to-tr from-accent to-darkaccent flex items-center justify-center">
                 <div className="w-14 h-14 rounded-full bg-foreground"></div>
               </div>
             </div>
+          )}
+          {!isFetchingNextPage && hasNextPage && (
+            <button
+              className="p-4 bg-button rounded-lg text-textbutton font-bold flex items-center justify-center shadow-md gap-2"
+              onClick={() => fetchNextPage()}
+            >
+              Show More
+            </button>
           )}
         </div>
       </div>
